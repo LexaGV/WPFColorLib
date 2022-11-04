@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="WPFColorLib.HSLColorSelector" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             SizeChanged="Control_Resized">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Slider Name="slidHue" Maximum="359" TickFrequency="10" TickPlacement="BottomRight" />
+            <Border Name="brdHue" BorderThickness="1" BorderBrush="DarkGray" Margin="1">
+                <Image Name="imgHue" Height="20" />
+            </Border>
+        </StackPanel>
+        <Border Name="brdSaturLight" BorderThickness="1" BorderBrush="DarkGray" Margin="1">
+            <Grid>
+                <Image Name="imgSaturLight" MinHeight="100" MouseDown="imgSaturLight_MouDown" MouseMove="imgSaturLight_MouMove" MouseUp="imgSaturLight_MouUp" />
+                <Canvas Name="cnvSaturLight">
+                    <Ellipse Name="ellClrTarget" Width="7" Height="7" StrokeThickness="2" Stroke="Aqua" />
+                </Canvas>
+            </Grid>
+        </Border>
+    </DockPanel>
+</UserControl>

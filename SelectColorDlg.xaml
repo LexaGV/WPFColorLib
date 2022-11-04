@@ -1,0 +1,125 @@
+﻿<Window x:Class="WPFColorLib.SelectColorDlg" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPFColorLib"
+        Title="Select Color" Width="420" Height="500">
+    <Window.Resources>
+        <Style x:Key="ColorProp" TargetType="{x:Type FrameworkElement}">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style x:Key="TextIcon" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Padding" Value="5, 0"/>
+            <Setter Property="FontFamily" Value="Font Awesome 5 Free Regular"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.2" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AwesomeBtn" TargetType="Button">
+            <Setter Property="Padding" Value="5, 3" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="FontFamily" Value="Font Awesome 5 Free Regular"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" DockPanel.Dock="Bottom">
+            <Button Padding="15,2" Margin="5, 0" IsDefault="True" IsEnabled="False" Name="btnOK" Click="btnOK_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="LimeGreen" Style="{StaticResource TextIcon}">&#xF00C;</TextBlock>
+                    <TextBlock VerticalAlignment="Center" Padding="5, 0">OK</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Padding="10,2" Margin="5, 0" IsCancel="True">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Tomato" Style="{StaticResource TextIcon}">&#xF00D;</TextBlock>
+                    <TextBlock VerticalAlignment="Center" Padding="5, 0">Cancel</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top">
+            <local:HSLColorSelector x:Name="hslColorSel" Margin="5" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="0" Header="New color">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height = "Auto" />
+                            <RowDefinition Height = "Auto" />
+                            <RowDefinition Height = "Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="bordNewClr" Style="{StaticResource ColorProp}" BorderBrush="Black" BorderThickness="1" CornerRadius="3" />
+                        <Button Grid.Row="0" Grid.Column="2" Click="AddFavorites_NewClr_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Add to favorite">&#xF055;</Button>
+
+                        <!-- RRGGBB -->
+                        <Button  Grid.Row="1" Grid.Column="0" Click="PasteNewClrHEX_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Paste RRGGBB">&#xF2F6;</Button>
+                        <TextBox Grid.Row="1" Grid.Column="1" Name="txtNewClrHEX" PreviewKeyDown="txtNewClrHEX_KeyDown" Style="{StaticResource ColorProp}" />
+                        <Button  Grid.Row="1" Grid.Column="2" Click="CopyNewClrHEX_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Copy RRGGBB">&#xF204;</Button>
+
+                        <!-- d,d,d -->
+                        <Button  Grid.Row="2" Grid.Column="0" Click="PasteNewClrDEC_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Paste D,D,D">&#xF2F6;</Button>
+                        <TextBox Grid.Row="2" Grid.Column="1" Name="txtNewClrDEC" PreviewKeyDown="txtNewClrDEC_KeyDown" Style="{StaticResource ColorProp}" />
+                        <Button  Grid.Row="2" Grid.Column="2" Click="CopyNewClrDEC_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Copy D,D,D">&#xF204;</Button>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Grid.Column="1" Header="Old color">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height = "Auto" />
+                            <RowDefinition Height = "Auto" />
+                            <RowDefinition Height = "Auto" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0" Name="bordOldClr" Style="{StaticResource ColorProp}" BorderBrush="Black" BorderThickness="1" CornerRadius="3" />
+                        <Button Grid.Row="0" Grid.Column="1" Click="AddFavorites_OldClr_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Add to favorite">&#xF055;</Button>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Name="txtOldClrHEX" Style="{StaticResource ColorProp}" />
+                        <!-- RRGGBB -->
+                        <Button  Grid.Row="1" Grid.Column="1" Click="CopyOldClrHEX_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Copy RRGGBB">&#xF204;</Button>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Name="txtOldClrDEC" Style="{StaticResource ColorProp}" />
+                        <!-- d,d,d -->
+                        <Button  Grid.Row="2" Grid.Column="1" Click="CopyOldClrDEC_Click" Style="{StaticResource AwesomeBtn}" ToolTip="Copy D,D,D">&#xF204;</Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+
+            <GroupBox Header="Luminosity palette">
+                <WrapPanel Name="pnlLumPalette" />
+            </GroupBox>
+        </StackPanel>
+
+        <GroupBox Header="Favorite colors">
+            <WrapPanel Name="pnlFavColors" Background="White" PreviewMouseRightButtonUp="pnlFavColors_RMouUp" 
+                       ToolTip="Left mouse button - select color, Right mouse button - delete fav.color"/>
+
+            <GroupBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Generate colors" IsHitTestVisible="False"/>
+                    <Separator/>
+                    <MenuItem Header="Apple 16" Click="GenerateAppleColors_Click" />
+                    <MenuItem Header="Standard 6 level" Click="GenerateStdColors_Click" />
+                    <Separator/>
+                    <MenuItem Header="Clear all" Click="ClearFav_Click" />
+                </ContextMenu>
+            </GroupBox.ContextMenu>
+        </GroupBox>
+    </DockPanel>
+</Window>
