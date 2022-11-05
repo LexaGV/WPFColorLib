@@ -35,6 +35,9 @@ Description of functionality:
 
 Usage:
 
+Reference necessary DLLs: [System.Memory](https://www.nuget.org/packages/System.Memory) 
+and [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/)
+
 ```C#
 var dlg = new SelectColorDlg(Colors.Bisque) { Owner = this };
 if (dlg.ShowDialog() == true) {
