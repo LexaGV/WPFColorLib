@@ -35,7 +35,8 @@ Description of functionality:
 
 Usage:
 
-Reference necessary DLLs: [System.Memory](https://www.nuget.org/packages/System.Memory) 
+Reference necessary DLLs: [System.Memory](https://www.nuget.org/packages/System.Memory),
+[System.Buffers](https://www.nuget.org/packages/System.Buffers/)
 and [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/)
 
 ```C#
