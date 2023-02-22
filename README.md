@@ -35,9 +35,11 @@ Description of functionality:
 
 Usage:
 
+Install "[Awesome Font v5](https://use.fontawesome.com/releases/v5.15.4/fontawesome-free-5.15.4-desktop.zip)".
 Reference necessary DLLs: [System.Memory](https://www.nuget.org/packages/System.Memory),
 [System.Buffers](https://www.nuget.org/packages/System.Buffers/)
-and [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/)
+and [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/).
+Try sample:
 
 ```C#
 var dlg = new SelectColorDlg(Colors.Bisque) { Owner = this };
